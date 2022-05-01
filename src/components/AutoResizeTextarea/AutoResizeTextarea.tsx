@@ -17,7 +17,7 @@ const AutoResizeTextarea = ({ value, onChange }: AutoResizeTextareaProps) => {
       const scrollHeight = tweetContentFieldRef.current.scrollHeight;
       tweetContentFieldRef.current.style.height = scrollHeight + 'px';
     }
-  }, [value]);
+  }, [value, tweetContentFieldRef]);
 
   return (
     <StyledTextarea

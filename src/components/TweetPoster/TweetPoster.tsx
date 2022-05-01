@@ -22,7 +22,7 @@ const TweetPoster = () => {
     } else {
       setIsButtonDisabled(false);
     }
-  }, [authorName, tweetContent]);
+  }, [authorName, tweetContent, numberOfAvailableChars]);
 
   const textAreaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTweetContent(event.target.value);
