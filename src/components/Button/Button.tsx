@@ -7,6 +7,7 @@ interface ButtonProps {
 }
 
 const Button = ({ text, onClick, isDisabled = false }: ButtonProps) => {
+  console.log(`isDisabled`, isDisabled);
   return (
     <StyledButton onClick={onClick} isDisabled={isDisabled}>
       {text}

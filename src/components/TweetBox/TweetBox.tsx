@@ -1,12 +1,12 @@
-import { Wrapper, AuthorName, TweetContent, TweetDate } from './Tweet.styled';
+import { Wrapper, AuthorName, TweetContent, TweetDate } from './TweetBox.styled';
 
-export interface TweetProps {
+export interface Tweet {
   authorName: string;
   tweetContent: string;
   creationDate: string;
 }
 
-const Tweet = ({ authorName, tweetContent, creationDate }: TweetProps) => {
+const TweetBox = ({ authorName, tweetContent, creationDate }: Tweet) => {
   return (
     <Wrapper>
       <AuthorName>{authorName}</AuthorName>
@@ -16,4 +16,4 @@ const Tweet = ({ authorName, tweetContent, creationDate }: TweetProps) => {
   );
 };
 
-export default Tweet;
+export default TweetBox;
