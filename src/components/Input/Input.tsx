@@ -3,16 +3,16 @@ import { StyledInput } from './Input.styled';
 
 interface InputProps {
   value: string;
-  setValue: (key: string) => void;
+  onChange: (key: string) => void;
 }
 
-const Input = ({ value, setValue }: InputProps) => {
+const Input = ({ value, onChange }: InputProps) => {
   return (
     <StyledInput
       type="text"
       required
       value={value}
-      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)}
+      onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value)}
     />
   );
 };

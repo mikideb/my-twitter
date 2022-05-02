@@ -1,15 +1,14 @@
 import React, { useContext } from 'react';
 import { StyledTextarea } from './AutoResizeTextarea.styled';
-import { AppContext } from '../../Context';
+import { TweetsContext } from '../../TweetsContext';
 
 interface AutoResizeTextareaProps {
   value: string;
-  setValue: (key: string) => void;
   onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 const AutoResizeTextarea = ({ value, onChange }: AutoResizeTextareaProps) => {
-  const { tweetContentFieldRef } = useContext(AppContext);
+  const { tweetContentFieldRef } = useContext(TweetsContext);
 
   React.useEffect(() => {
     if (tweetContentFieldRef && tweetContentFieldRef.current) {

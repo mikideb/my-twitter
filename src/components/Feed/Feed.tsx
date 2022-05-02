@@ -1,19 +1,19 @@
 import { useContext } from 'react';
-import { AppContext } from '../../Context';
-import Tweet, { TweetProps } from '../Tweet/Tweet';
+import { TweetsContext } from '../../TweetsContext';
+import TweetBox, { Tweet } from '../TweetBox/TweetBox';
 import { Wrapper } from './Feed.styled';
 import EmptyState from '../EmptyState/EmptyState';
 
 const Feed = () => {
-  const { tweets } = useContext(AppContext);
+  const { tweets } = useContext(TweetsContext);
 
   const feedContent = () => {
-    if (tweets?.length === 0) {
+    if (!tweets || tweets?.length === 0) {
       return <EmptyState />;
     }
 
-    return tweets?.map(({ authorName, tweetContent, creationDate }: TweetProps, ind: number) => (
-      <Tweet key={ind} authorName={authorName} tweetContent={tweetContent} creationDate={creationDate} />
+    return tweets?.map(({ authorName, tweetContent, creationDate }: Tweet, ind: number) => (
+      <TweetBox key={ind} authorName={authorName} tweetContent={tweetContent} creationDate={creationDate} />
     ));
   };
 

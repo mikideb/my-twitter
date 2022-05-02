@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Wrapper, Title, MainText } from './EmptyState.styled';
 import Button from '../Button/Button';
-import { AppContext } from '../../Context';
+import { TweetsContext } from '../../TweetsContext';
 
 const TITLE = 'Welcome to Twitter!';
 const MAIN_TEXT =
@@ -9,7 +9,7 @@ const MAIN_TEXT =
 const BUTTON_TEXT = 'Tweet something!';
 
 const EmptyState = () => {
-  const { tweetContentFieldRef } = useContext(AppContext);
+  const { tweetContentFieldRef } = useContext(TweetsContext);
 
   return (
     <Wrapper>
