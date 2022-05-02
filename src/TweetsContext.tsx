@@ -1,4 +1,4 @@
-import { createContext, useState, useRef } from 'react';
+import { createContext, useState, useRef, useEffect } from 'react';
 import { Tweet } from './components/TweetBox/TweetBox';
 
 interface ContextProviderProps {
@@ -8,9 +8,16 @@ interface ContextProviderProps {
 export const TweetsContext = createContext<any>(null);
 
 export const TweetsContextProvider = ({ children }: ContextProviderProps) => {
-  const [tweets, setTweets] = useState<Array<Tweet>>([]);
+  const localStorageData = JSON.parse(localStorage.getItem('tweets') as string);
+  const tweetsInitialState = localStorageData || [];
+
+  const [tweets, setTweets] = useState<Array<Tweet>>(tweetsInitialState);
 
   const tweetContentFieldRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    localStorage.setItem('tweets', JSON.stringify(tweets));
+  }, [tweets]);
 
   return (
     <TweetsContext.Provider value={{ tweets, setTweets, tweetContentFieldRef }}>{children}</TweetsContext.Provider>
