@@ -11,7 +11,6 @@ const CHARS_LIMIT = 280;
 const TweetPoster = () => {
   const [authorName, setAuthorName] = useState<string>('');
   const [tweetContent, setTweetContent] = useState<string>('');
-  const [currentPostID, setCurrentPostID] = useState<number>(0);
 
   const { tweets, setTweets } = useContext(TweetsContext);
 
@@ -30,8 +29,6 @@ const TweetPoster = () => {
     const newTweet = { authorName, tweetContent, creationDate };
 
     setTweets([newTweet, ...tweets]);
-    // localStorage.setItem(`${currentPostID}`, JSON.stringify(newTweet));
-    setCurrentPostID(currentPostID + 1);
     setAuthorName('');
     setTweetContent('');
   };
