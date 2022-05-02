@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useCallback } from 'react';
 import { Wrapper, BottomContainer, CharsCounter } from './TweetPoster.styled';
 import AutoResizeTextarea from '../AutoResizeTextarea/AutoResizeTextarea';
 import Input from '../Input/Input';
@@ -16,11 +16,14 @@ const TweetPoster = () => {
 
   const isButtonDisabled = tweetContent.length > CHARS_LIMIT || tweetContent.length === 0 || authorName.length === 0;
 
-  const handleTextAreaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setTweetContent(event.target.value);
-  };
+  const handleTextAreaChange = useCallback(
+    (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+      setTweetContent(event.target.value);
+    },
+    [setTweetContent],
+  );
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     if (isButtonDisabled) {
       return;
     }
@@ -31,11 +34,11 @@ const TweetPoster = () => {
     setTweets([newTweet, ...tweets]);
     setAuthorName('');
     setTweetContent('');
-  };
+  }, [isButtonDisabled, authorName, tweetContent, tweets, setTweets]);
 
-  const calculateAvailableChars = (): number => {
+  const calculateAvailableChars = useCallback((): number => {
     return CHARS_LIMIT - tweetContent.length;
-  };
+  }, [tweetContent]);
 
   return (
     <Wrapper>
